@@ -1,3 +1,11 @@
+*~
+
+# Build directory
+dist/
+.clasp.json
+.clasprc.json
+
+
 # Logs
 logs
 *.log
