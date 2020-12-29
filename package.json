@@ -1,0 +1,41 @@
+{
+  "name": "my_bot_sample",
+  "version": "1.0.0",
+  "description": "ChatBot sample",
+  "main": "index.js",
+  "scripts": {
+    "lint": "",
+    "test": "",
+    "build": "date",
+    "eslint": "eslint",
+    "deploy": "npm run build && clasp push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isnot/gas-chatbot-framework-sample.git"
+  },
+  "keywords": [
+    "gas",
+    "google-apps-script",
+    "clasp"
+  ],
+  "author": "isnot",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/isnot"
+  },
+  "homepage": "https://github.com/isnot",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.16.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-googleappsscript": "^1.0.3",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^24.1.3",
+    "eslint-plugin-prettier": "^3.1.3",
+    "prettier": "^2.2.1",
+    "prettier-eslint": "^12.0.0"
+  },
+  "dependencies": {}
+}
