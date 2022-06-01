@@ -1,4 +1,4 @@
-(function(exports) {
+(function (exports) {
   // =================================================================================
   // Start of plugin
 
@@ -67,7 +67,7 @@
       title: message.title,
       address: message.address,
       latitude: message.latitude,
-      longitude: message.longitude
+      longitude: message.longitude,
     });
   }
 
@@ -89,7 +89,7 @@
       isAvailable: true,
       isEnabled: true,
       isLoaded: false,
-      registerEvents
+      registerEvents,
     };
   }
 
@@ -101,7 +101,7 @@
     }
   } catch (e) {
     cx = {
-      plugins: {}
+      plugins: {},
     };
   }
   const p = setup();

@@ -12,7 +12,7 @@ class AppleManager {
   }
 
   setValidHandlerTypes(vType = []) {
-    vType.forEach(type => {
+    vType.forEach((type) => {
       this.handler_types.push(type);
       this.handlers.set(type, new Set());
     });
@@ -46,10 +46,10 @@ class AppleManager {
 
   showHandlersInfo() {
     let text = '### showHandlersInfo:\n';
-    this.recallHandlerTypes().forEach(tk => {
+    this.recallHandlerTypes().forEach((tk) => {
       const pset = this.handlers.get(tk);
       text += `${tk} => (${pset.size})`;
-      Array.from(pset.values()).forEach(pfunc => {
+      Array.from(pset.values()).forEach((pfunc) => {
         text += ` ${pfunc.name}`;
       });
       text += '\n';
@@ -72,7 +72,7 @@ class AppleManager {
     }
     const hx = this.handlers.get(type);
     if (hx.size > 0) {
-      hx.forEach(func => {
+      hx.forEach((func) => {
         func.call(undefined, params);
       });
     }

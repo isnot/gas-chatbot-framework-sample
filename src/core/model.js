@@ -79,9 +79,9 @@ class AppleModel extends AbstractAppleModel {
   updateLineUsersSheet() {
     const users = this.getUsers('line_users');
     // getGlobalContexts().bot.sendToAdmin(['DEBUG updateLUS', users]);
-    this.updateSheet('line_users', users, prof => {
+    this.updateSheet('line_users', users, (prof) => {
       if (typeof prof === 'object') {
-        return this.line_users_heads.map(col => {
+        return this.line_users_heads.map((col) => {
           return prof[col];
         });
       }

@@ -31,7 +31,7 @@ class AppleUtils {
       return undefined;
     }
     try {
-      pos.split('.').forEach(el => {
+      pos.split('.').forEach((el) => {
         if (this.hasProperty(cur, el)) {
           cur = cur[el];
         } else {
@@ -50,11 +50,11 @@ class AppleUtils {
 
   each(target, func) {
     if (Array.isArray(target)) {
-      target.forEach(item => {
+      target.forEach((item) => {
         func(item);
       });
     } else if (typeof target === 'object') {
-      Object.keys(target).forEach(key => {
+      Object.keys(target).forEach((key) => {
         func(key, target[key]);
       });
     }
@@ -86,7 +86,7 @@ class AppleUtils {
     }
     const keys = Object.keys(obj).sort();
     const first = keys[0];
-    keys.forEach(ki => {
+    keys.forEach((ki) => {
       if (matched) {
         target = ki;
         matched = false;
@@ -120,7 +120,7 @@ class AppleUtils {
   ArrayHash2Hash(ah, pk, vk) {
     const h = {};
     const hasVk = typeof vk === 'string';
-    this.each(ah, item => {
+    this.each(ah, (item) => {
       if (hasVk) {
         h[item[pk]] = item[vk];
       } else {
@@ -133,7 +133,7 @@ class AppleUtils {
   ArrayHash2HashArray(ah, pk, vk) {
     const h = {};
     const hasVk = typeof vk === 'string';
-    this.each(ah, item => {
+    this.each(ah, (item) => {
       if (!this.hasProperty(h, item[pk])) {
         h[item[pk]] = [];
       }
@@ -152,7 +152,7 @@ class AppleUtils {
     let iidx;
     let pk;
     let counter = 0;
-    this.each(ah, item => {
+    this.each(ah, (item) => {
       if (typeof i === 'number') {
         pk = item[i];
       } else {
@@ -162,7 +162,7 @@ class AppleUtils {
       if (vi && Array.isArray(vi)) {
         iidx = 0;
         ih = {};
-        this.each(item, el => {
+        this.each(item, (el) => {
           ih[vi[iidx]] = el;
           iidx += 1;
         });
@@ -183,11 +183,11 @@ class AppleUtils {
     const ent = {
       '<': '&lt;',
       '>': '&gt;',
-      '&': '&amp;'
+      '&': '&amp;',
       // '*' : '&#42;',
       // '_' : '&#95;',
     };
-    return text.replace(/[<>&]/g, match => {
+    return text.replace(/[<>&]/g, (match) => {
       return ent[match];
     });
   }

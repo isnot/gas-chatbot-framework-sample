@@ -49,7 +49,7 @@ class AbstractAppleModel {
       values = config_sheet.getRange(1, 1, config_sheet.getLastRow(), 2).getDisplayValues();
     }
 
-    values.forEach(cols => {
+    values.forEach((cols) => {
       let key = cols[0];
       // 空行と#コメント行は無視
       if (key && key.indexOf('#') !== 0) {

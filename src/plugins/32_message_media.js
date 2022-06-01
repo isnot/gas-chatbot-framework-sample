@@ -1,10 +1,10 @@
-(function(exports) {
+(function (exports) {
   // =================================================================================
   // Start of plugin
 
   function downloadContent(messageId, downloadPath) {
     return client.getMessageContent(messageId).then(
-      stream =>
+      (stream) =>
         new Promise((resolve, reject) => {
           const writable = fs.createWriteStream(downloadPath);
           stream.pipe(writable);
@@ -18,7 +18,7 @@
     return client.replyMessage(replyToken, {
       type: 'sticker',
       packageId: message.packageId,
-      stickerId: message.stickerId
+      stickerId: message.stickerId,
     });
   }
 
@@ -28,14 +28,14 @@
       const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
       const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
-      getContent = downloadContent(message.id, downloadPath).then(downloadPath1 => {
+      getContent = downloadContent(message.id, downloadPath).then((downloadPath1) => {
         // ImageMagick is needed here to run 'convert'
         // Please consider about security and performance by yourself
         cp.execSync(`convert -resize 240x jpeg:${downloadPath1} jpeg:${previewPath}`);
 
         return {
           originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath1),
-          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath)
+          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
         };
       });
     } else if (message.contentProvider.type === 'external') {
@@ -46,7 +46,7 @@
       return client.replyMessage(replyToken, {
         type: 'image',
         originalContentUrl,
-        previewImageUrl
+        previewImageUrl,
       });
     });
   }
@@ -57,14 +57,14 @@
       const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
       const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
-      getContent = downloadContent(message.id, downloadPath).then(downloadPath1 => {
+      getContent = downloadContent(message.id, downloadPath).then((downloadPath1) => {
         // FFmpeg and ImageMagick is needed here to run 'convert'
         // Please consider about security and performance by yourself
         cp.execSync(`convert mp4:${downloadPath1}[0] jpeg:${previewPath}`);
 
         return {
           originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath1),
-          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath)
+          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
         };
       });
     } else if (message.contentProvider.type === 'external') {
@@ -75,7 +75,7 @@
       return client.replyMessage(replyToken, {
         type: 'video',
         originalContentUrl,
-        previewImageUrl
+        previewImageUrl,
       });
     });
   }
@@ -85,9 +85,9 @@
     if (message.contentProvider.type === 'line') {
       const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.m4a`);
 
-      getContent = downloadContent(message.id, downloadPath).then(downloadPath1 => {
+      getContent = downloadContent(message.id, downloadPath).then((downloadPath1) => {
         return {
-          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath1)
+          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath1),
         };
       });
     } else {
@@ -98,7 +98,7 @@
       return client.replyMessage(replyToken, {
         type: 'audio',
         originalContentUrl,
-        duration: message.duration
+        duration: message.duration,
       });
     });
   }
@@ -122,7 +122,7 @@
       isAvailable: true,
       isEnabled: false,
       isLoaded: false,
-      registerEvents
+      registerEvents,
     };
   }
 
@@ -134,7 +134,7 @@
     }
   } catch (e) {
     cx = {
-      plugins: {}
+      plugins: {},
     };
   }
   const p = setup();

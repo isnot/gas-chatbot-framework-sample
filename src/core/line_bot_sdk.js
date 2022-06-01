@@ -3,7 +3,7 @@ class LineBotSdkClient {
     this.config = config;
     this.baseUrl = 'https://api.line.me/v2/bot/';
 
-    this.apiUrl = path => {
+    this.apiUrl = (path) => {
       return '' + this.baseUrl + path;
     };
     this.pushUrl = () => {
@@ -18,10 +18,10 @@ class LineBotSdkClient {
     this.broadcastUrl = () => {
       return this.apiUrl('message/broadcast');
     };
-    this.contentUrl = messageId => {
+    this.contentUrl = (messageId) => {
       return this.apiUrl('message/' + messageId + '/content');
     };
-    this.userProfileUrl = userId => {
+    this.userProfileUrl = (userId) => {
       return this.apiUrl('profile/' + userId);
     };
     this.roomMemberProfileUrl = (roomId, userId) => {
@@ -30,7 +30,7 @@ class LineBotSdkClient {
     this.groupMemberProfileUrl = (groupId, userId) => {
       return this.apiUrl('group/' + groupId + '/member/' + userId);
     };
-    this.profileUrl = eventSource => {
+    this.profileUrl = (eventSource) => {
       switch (eventSource.type) {
         case 'group':
           return this.groupMemberProfileUrl(eventSource.groupId, eventSource.userId);
@@ -40,19 +40,19 @@ class LineBotSdkClient {
           return this.userProfileUrl(eventSource.userId);
       }
     };
-    this.groupMemberIdsUrl = groupId => {
+    this.groupMemberIdsUrl = (groupId) => {
       return this.apiUrl('group/' + groupId + '/members/ids');
     };
-    this.roomMemberIdsUrl = roomId => {
+    this.roomMemberIdsUrl = (roomId) => {
       return this.apiUrl('room/' + roomId + '/members/ids');
     };
-    this.leaveGroupUrl = groupId => {
+    this.leaveGroupUrl = (groupId) => {
       return this.apiUrl('group/' + groupId + '/leave');
     };
-    this.leaveRoomUrl = roomId => {
+    this.leaveRoomUrl = (roomId) => {
       return this.apiUrl('room/' + roomId + '/leave');
     };
-    this.leaveUrl = eventSource => {
+    this.leaveUrl = (eventSource) => {
       switch (eventSource.type) {
         case 'group':
           return this.leaveGroupUrl(eventSource.groupId);
@@ -62,7 +62,7 @@ class LineBotSdkClient {
           throw new Error('Unexpected eventSource.type to get leave url.');
       }
     };
-    this.richMenuUrl = richMenuId => {
+    this.richMenuUrl = (richMenuId) => {
       return this.apiUrl('richmenu' + (richMenuId ? '/' + richMenuId : ''));
     };
     this.richMenuListUrl = () => {
@@ -71,15 +71,15 @@ class LineBotSdkClient {
     this.userRichMenuUrl = (userId, richMenuId) => {
       return this.apiUrl('user/' + userId + '/richmenu' + (richMenuId ? '/' + richMenuId : ''));
     };
-    this.richMenuContentUrl = richMenuId => {
+    this.richMenuContentUrl = (richMenuId) => {
       return this.apiUrl('richmenu/' + richMenuId + '/content');
     };
-    this.defaultRichMenuUrl = richMenuId => {
+    this.defaultRichMenuUrl = (richMenuId) => {
       return this.apiUrl('user/all/richmenu' + (richMenuId ? '/' + richMenuId : ''));
     };
     this.authHeader = () => {
       return {
-        Authorization: 'Bearer ' + this.config.channelAccessToken
+        Authorization: 'Bearer ' + this.config.channelAccessToken,
       };
     };
   }
@@ -93,8 +93,8 @@ class LineBotSdkClient {
       payload: JSON.stringify({
         messages: messageArray,
         to,
-        notificationDisabled
-      })
+        notificationDisabled,
+      }),
     });
   }
 
@@ -107,8 +107,8 @@ class LineBotSdkClient {
       payload: JSON.stringify({
         messages: messageArray,
         replyToken,
-        notificationDisabled
-      })
+        notificationDisabled,
+      }),
     });
   }
 
@@ -121,8 +121,8 @@ class LineBotSdkClient {
       payload: JSON.stringify({
         messages: messageArray,
         to: recipients,
-        notificationDisabled
-      })
+        notificationDisabled,
+      }),
     });
   }
 
@@ -134,15 +134,15 @@ class LineBotSdkClient {
       method: 'post',
       payload: JSON.stringify({
         messages: messageArray,
-        notificationDisabled
-      })
+        notificationDisabled,
+      }),
     });
   }
 
   getProfile(userId) {
     return JSON.parse(
       UrlFetchApp.fetch(this.userProfileUrl(userId), {
-        headers: this.authHeader()
+        headers: this.authHeader(),
       }).getContentText()
     );
   }
@@ -150,7 +150,7 @@ class LineBotSdkClient {
   getGroupMemberProfile(groupId, userId) {
     return JSON.parse(
       UrlFetchApp.fetch(this.groupMemberProfileUrl(groupId, userId), {
-        headers: this.authHeader()
+        headers: this.authHeader(),
       }).getContentText()
     );
   }
@@ -158,7 +158,7 @@ class LineBotSdkClient {
   getRoomMemberProfile(roomId, userId) {
     return JSON.parse(
       UrlFetchApp.fetch(this.roomMemberProfileUrl(roomId, userId), {
-        headers: this.authHeader()
+        headers: this.authHeader(),
       }).getContentText()
     );
   }
@@ -166,7 +166,7 @@ class LineBotSdkClient {
   getProfileWithEventSource(eventSource) {
     return JSON.parse(
       UrlFetchApp.fetch(this.profileUrl(eventSource), {
-        headers: this.authHeader()
+        headers: this.authHeader(),
       }).getContentText()
     );
   }
@@ -174,7 +174,7 @@ class LineBotSdkClient {
   getGroupMemberIds(groupId) {
     return JSON.parse(
       UrlFetchApp.fetch(this.groupMemberIdsUrl(groupId), {
-        headers: this.authHeader()
+        headers: this.authHeader(),
       }).getContentText()
     );
   }
@@ -182,42 +182,42 @@ class LineBotSdkClient {
   getRoomMemberIds(roomId) {
     return JSON.parse(
       UrlFetchApp.fetch(this.roomMemberIdsUrl(roomId), {
-        headers: this.authHeader()
+        headers: this.authHeader(),
       }).getContentText()
     );
   }
 
   getMessageContent(messageId) {
     return UrlFetchApp.fetch(this.contentUrl(messageId), {
-      headers: this.authHeader()
+      headers: this.authHeader(),
     }).getBlob();
   }
 
   leaveGroup(groupId) {
     UrlFetchApp.fetch(this.leaveGroupUrl(groupId), {
       headers: this.authHeader(),
-      method: 'post'
+      method: 'post',
     });
   }
 
   leaveRoom(roomId) {
     UrlFetchApp.fetch(this.leaveRoomUrl(roomId), {
       headers: this.authHeader(),
-      method: 'post'
+      method: 'post',
     });
   }
 
   leaveWithEventSource(eventSource) {
     UrlFetchApp.fetch(this.leaveUrl(eventSource), {
       headers: this.authHeader(),
-      method: 'post'
+      method: 'post',
     });
   }
 
   getRichMenu(richMenuId) {
     return JSON.parse(
       UrlFetchApp.fetch(this.richMenuUrl(richMenuId), {
-        headers: this.authHeader()
+        headers: this.authHeader(),
       }).getContentText()
     );
   }
@@ -227,40 +227,40 @@ class LineBotSdkClient {
       contentType: 'application/json',
       headers: this.authHeader(),
       method: 'post',
-      payload: JSON.stringify(richMenu)
+      payload: JSON.stringify(richMenu),
     }).getContentText();
   }
 
   deleteRichMenu(richMenuId) {
     UrlFetchApp.fetch(this.richMenuUrl(richMenuId), {
       headers: this.authHeader(),
-      method: 'delete'
+      method: 'delete',
     });
   }
 
   getRichMenuIdOfUser(userId) {
     return UrlFetchApp.fetch(this.userRichMenuUrl(userId), {
-      headers: this.authHeader()
+      headers: this.authHeader(),
     }).getContentText();
   }
 
   linkRichMenuToUser(userId, richMenuId) {
     UrlFetchApp.fetch(this.userRichMenuUrl(userId, richMenuId), {
       headers: this.authHeader(),
-      method: 'post'
+      method: 'post',
     });
   }
 
   unlinkRichMenuFromUser(userId) {
     UrlFetchApp.fetch(this.userRichMenuUrl(userId), {
       headers: this.authHeader(),
-      method: 'delete'
+      method: 'delete',
     });
   }
 
   getRichMenuImage(richMenuId) {
     return UrlFetchApp.fetch(this.richMenuContentUrl(richMenuId), {
-      headers: this.authHeader()
+      headers: this.authHeader(),
     }).getBlob();
   }
 
@@ -269,14 +269,14 @@ class LineBotSdkClient {
       contentType: contentType,
       headers: this.authHeader(),
       method: 'post',
-      payload: data
+      payload: data,
     });
   }
 
   getRichMenuList() {
     return JSON.parse(
       UrlFetchApp.fetch(this.richMenuListUrl(), {
-        headers: this.authHeader()
+        headers: this.authHeader(),
       }).getContentText()
     ).richmenus;
   }
@@ -284,20 +284,20 @@ class LineBotSdkClient {
   setDefaultRichMenu(richMenuId) {
     UrlFetchApp.fetch(this.defaultRichMenuUrl(richMenuId), {
       headers: this.authHeader(),
-      method: 'post'
+      method: 'post',
     });
   }
 
   getDefaultRichMenuId() {
     return UrlFetchApp.fetch(this.defaultRichMenuUrl(), {
-      headers: this.authHeader()
+      headers: this.authHeader(),
     }).getContentText();
   }
 
   deleteDefaultRichMenu() {
     UrlFetchApp.fetch(this.defaultRichMenuUrl(), {
       headers: this.authHeader(),
-      method: 'delete'
+      method: 'delete',
     });
   }
 }

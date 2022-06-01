@@ -8,7 +8,6 @@ function myTest() {
 
   // eslint-disable-next-line prettier/prettier
 
-
   // eslint-disable-next-line no-use-before-define,prettier/prettier
   // doPost({parameter: {ss: cx.spreadsheet_id, btype: 'telegram'}, postData: {length: 200, type: 'application/json', contents: text}});
 
@@ -23,7 +22,6 @@ function myTest() {
   cx.requestContents = text;
   cx.outgoing = new Set();
   const config = cx.model.getSettings();
-
 }
 
 function test_InlineKeyboardManager() {
@@ -44,14 +42,14 @@ function test_InlineKeyboardManager() {
       kbm.createInlineKeyboardButton({
         text: '1 4',
         callback_data: '1-4-cb',
-        url: 'https://example.com/1-4'
+        url: 'https://example.com/1-4',
       }),
       kbm.createInlineKeyboardButton('2 1'),
       kbm.createInlineKeyboardButton('2 2'),
       kbm.createInlineKeyboardButton('2 3'),
       kbm.createInlineKeyboardButton('2 4'),
       kbm.createInlineKeyboardButton('3 1'),
-      kbm.createInlineKeyboardButton('3 2')
+      kbm.createInlineKeyboardButton('3 2'),
     ],
     { cols: 4 }
   );
@@ -75,7 +73,7 @@ function getGlobalContexts() {
     throw new Error('no GlobalContexts');
   } catch (e) {
     cx = {
-      plugins: {}
+      plugins: {},
     };
     // if ((e instanceof ReferenceError) || e.name === 'ReferenceError') {}
   }
@@ -87,7 +85,7 @@ function selectBotType(type = '') {
   const cx = getGlobalContexts();
   const bots = {
     line: 'lineBot',
-    telegram: 'tgBot'
+    telegram: 'tgBot',
   };
   let select;
   if (typeof type === 'string' && cx.utils.hasProperty(bots, type)) {
@@ -96,7 +94,7 @@ function selectBotType(type = '') {
     const config = cx.model.getSettings();
     select = bots[config.bot.primary_bot_type.toLowerCase()];
   }
-  Object.values(bots).forEach(b => {
+  Object.values(bots).forEach((b) => {
     cx[b].isPrimary = false;
   });
   cx.bot = cx[select];
@@ -140,10 +138,7 @@ function doGet(request) {
 
   // Build and return HTML in IFRAME sandbox mode.
   const template = HtmlService.createTemplateFromFile('start');
-  return template
-    .evaluate()
-    .setTitle('start')
-    .setSandboxMode(HtmlService.SandboxMode.IFRAME);
+  return template.evaluate().setTitle('start').setSandboxMode(HtmlService.SandboxMode.IFRAME);
 }
 
 function doPost(request) {
@@ -166,7 +161,7 @@ function doPost(request) {
 
   // registerEvents: plugins can use cx(GlobalContents).
   const plugin_filenames = Object.keys(cx.plugins).sort();
-  plugin_filenames.forEach(pfn => {
+  plugin_filenames.forEach((pfn) => {
     const px = cx.plugins[pfn];
     if (px.isAvailable && px.isEnabled && !px.isLoaded) {
       px.isLoaded = true;

@@ -1,4 +1,4 @@
-(function(exports) {
+(function (exports) {
   // =================================================================================
   // Start of plugin
 
@@ -10,7 +10,7 @@
     const texts = Array.isArray(myTexts) ? myTexts : [myTexts];
     return cx.line.replyMessage(
       replyToken,
-      texts.map(text => ({ type: 'text', text }))
+      texts.map((text) => ({ type: 'text', text }))
     );
   }
 
@@ -27,10 +27,10 @@
     if (source.userId) {
       return client
         .getProfile(source.userId)
-        .then(profile =>
+        .then((profile) =>
           replyText(replyToken, [
             `Display name: ${profile.displayName}`,
-            `Status message: ${profile.statusMessage}`
+            `Status message: ${profile.statusMessage}`,
           ])
         );
     }
@@ -50,9 +50,9 @@
           { label: 'Go to line.me', type: 'uri', uri: 'https://line.me' },
           { label: 'Say hello1', type: 'postback', data: 'hello こんにちは' },
           { label: '言 hello2', type: 'postback', data: 'hello こんにちは', text: 'hello こんにちは' },
-          { label: 'Say message', type: 'message', text: 'Rice=米' }
-        ]
-      }
+          { label: 'Say message', type: 'message', text: 'Rice=米' },
+        ],
+      },
     });
   }
 
@@ -65,9 +65,9 @@
         text: 'Do it?',
         actions: [
           { label: 'Yes', type: 'message', text: 'Yes!' },
-          { label: 'No', type: 'message', text: 'No!' }
-        ]
-      }
+          { label: 'No', type: 'message', text: 'No!' },
+        ],
+      },
     });
   }
 
@@ -84,8 +84,8 @@
             text: 'fuga',
             actions: [
               { label: 'Go to line.me', type: 'uri', uri: 'https://line.me' },
-              { label: 'Say hello1', type: 'postback', data: 'hello こんにちは' }
-            ]
+              { label: 'Say hello1', type: 'postback', data: 'hello こんにちは' },
+            ],
           },
           {
             thumbnailImageUrl: buttonsImageURL,
@@ -93,11 +93,11 @@
             text: 'fuga',
             actions: [
               { label: '言 hello2', type: 'postback', data: 'hello こんにちは', text: 'hello こんにちは' },
-              { label: 'Say message', type: 'message', text: 'Rice=米' }
-            ]
-          }
-        ]
-      }
+              { label: 'Say message', type: 'message', text: 'Rice=米' },
+            ],
+          },
+        ],
+      },
     });
   }
 
@@ -110,15 +110,15 @@
         columns: [
           {
             imageUrl: buttonsImageURL,
-            action: { label: 'Go to LINE', type: 'uri', uri: 'https://line.me' }
+            action: { label: 'Go to LINE', type: 'uri', uri: 'https://line.me' },
           },
           {
             imageUrl: buttonsImageURL,
-            action: { label: 'Say hello1', type: 'postback', data: 'hello こんにちは' }
+            action: { label: 'Say hello1', type: 'postback', data: 'hello こんにちは' },
           },
           {
             imageUrl: buttonsImageURL,
-            action: { label: 'Say message', type: 'message', text: 'Rice=米' }
+            action: { label: 'Say message', type: 'message', text: 'Rice=米' },
           },
           {
             imageUrl: buttonsImageURL,
@@ -126,11 +126,11 @@
               label: 'datetime',
               type: 'datetimepicker',
               data: 'DATETIME',
-              mode: 'datetime'
-            }
-          }
-        ]
-      }
+              mode: 'datetime',
+            },
+          },
+        ],
+      },
     });
   }
 
@@ -144,9 +144,9 @@
         actions: [
           { type: 'datetimepicker', label: 'date', data: 'DATE', mode: 'date' },
           { type: 'datetimepicker', label: 'time', data: 'TIME', mode: 'time' },
-          { type: 'datetimepicker', label: 'datetime', data: 'DATETIME', mode: 'datetime' }
-        ]
-      }
+          { type: 'datetimepicker', label: 'datetime', data: 'DATETIME', mode: 'datetime' },
+        ],
+      },
     });
   }
 
@@ -160,19 +160,19 @@
         {
           area: { x: 0, y: 0, width: 520, height: 520 },
           type: 'uri',
-          linkUri: 'https://store.line.me/family/manga/en'
+          linkUri: 'https://store.line.me/family/manga/en',
         },
         {
           area: { x: 520, y: 0, width: 520, height: 520 },
           type: 'uri',
-          linkUri: 'https://store.line.me/family/music/en'
+          linkUri: 'https://store.line.me/family/music/en',
         },
         {
           area: { x: 0, y: 520, width: 520, height: 520 },
           type: 'uri',
-          linkUri: 'https://store.line.me/family/play/en'
+          linkUri: 'https://store.line.me/family/play/en',
         },
-        { area: { x: 520, y: 520, width: 520, height: 520 }, type: 'message', text: 'URANAI!' }
+        { area: { x: 520, y: 520, width: 520, height: 520 }, type: 'message', text: 'URANAI!' },
       ],
       video: {
         originalContentUrl: `${baseURL}/static/imagemap/video.mp4`,
@@ -181,13 +181,13 @@
           x: 280,
           y: 385,
           width: 480,
-          height: 270
+          height: 270,
         },
         externalLink: {
           linkUri: 'https://line.me',
-          label: 'LINE'
-        }
-      }
+          label: 'LINE',
+        },
+      },
     });
   }
 
@@ -255,7 +255,7 @@
       isAvailable: true,
       isEnabled: false,
       isLoaded: false,
-      registerEvents
+      registerEvents,
     };
   }
 
@@ -267,7 +267,7 @@
     }
   } catch (e) {
     cx = {
-      plugins: {}
+      plugins: {},
     };
   }
   const p = setup();

@@ -1,4 +1,4 @@
-(function(exports) {
+(function (exports) {
   // =================================================================================
   // Start of plugin
 
@@ -6,7 +6,7 @@
     const cx = getGlobalContexts();
     const plugin_filenames = Object.keys(cx.plugins).sort();
     var helps = [];
-    plugin_filenames.forEach(pfn => {
+    plugin_filenames.forEach((pfn) => {
       const px = cx.plugins[pfn];
       // text = text + '[' + px.name + '] ' + px.description + '\n';
       if (px.isAvailable && px.isEnabled && px.help !== '') {
@@ -35,7 +35,7 @@
       isAvailable: true,
       isEnabled: false,
       isLoaded: false,
-      registerEvents
+      registerEvents,
     };
   }
 
@@ -47,7 +47,7 @@
     }
   } catch (e) {
     cx = {
-      plugins: {}
+      plugins: {},
     };
   }
   const p = setup();

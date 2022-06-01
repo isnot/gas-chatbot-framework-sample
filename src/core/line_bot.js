@@ -32,7 +32,7 @@ class LineBot extends AbstractAppleBot {
       'datetime',
       'imagemap',
       'bye',
-      'error'
+      'error',
     ];
     this.botUserId = config.botUserId || '';
     this.destination = '';
@@ -73,7 +73,7 @@ class LineBot extends AbstractAppleBot {
       displayName: profile.displayName || '',
       pictureUrl: u.deepRetrieve(profile, 'pictureUrl') || '',
       datetime: now_dt || '',
-      statusMessage: u.deepRetrieve(profile, 'statusMessage') || ''
+      statusMessage: u.deepRetrieve(profile, 'statusMessage') || '',
     };
     return users[userId];
   }
@@ -138,7 +138,7 @@ class LineBot extends AbstractAppleBot {
       'audio', // 音声
       'file',
       'location', // 位置情報
-      'sticker' // スタンプ
+      'sticker', // スタンプ
     ]);
     const valid_operation_type = new Set([
       'follow', // 友達追加された (ブロック解除含む)
@@ -146,7 +146,7 @@ class LineBot extends AbstractAppleBot {
       'join',
       'leave',
       'postback',
-      'beacon'
+      'beacon',
     ]);
 
     // cx.bot.sendToAdmin(['DEBUG hE', cx.mgr.showHandlersInfo()]);
@@ -234,11 +234,11 @@ class LineBot extends AbstractAppleBot {
 
     // handle events separately
     Promise.all(
-      data.events.map(async ee => {
+      data.events.map(async (ee) => {
         const res = await this.handleEvent(ee);
         // cx.bot.sendToAdmin(['DEBUG mD', res]);
       })
-    ).catch(err => {
+    ).catch((err) => {
       throw new Error(err);
     });
   }
@@ -341,7 +341,7 @@ class LineBot extends AbstractAppleBot {
       return undefined;
     }
     const message_type_media = ['image', 'video', 'audio', 'file'];
-    const mids = events.filter(item => {
+    const mids = events.filter((item) => {
       const mtype = u.deepRetrieve(item, 'message.type');
       if (message_type_media.indexOf(mtype) === -1) {
         return false;

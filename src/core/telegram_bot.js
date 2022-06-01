@@ -34,7 +34,7 @@ class TelegramBot extends AbstractAppleBot {
       'channel_chat_created',
       'migrate_to_chat_id',
       'pinned_message',
-      'reply_markup'
+      'reply_markup',
     ];
   }
 
@@ -119,7 +119,7 @@ class TelegramBot extends AbstractAppleBot {
     const chats = {};
     const id2name = {};
     const config = cx.model.getSettings();
-    Object.keys(config.archiver).forEach(key => {
+    Object.keys(config.archiver).forEach((key) => {
       let gid = 0;
       let prop = '';
       const val = config.archiver[key];
@@ -142,7 +142,7 @@ class TelegramBot extends AbstractAppleBot {
     });
     // Logger.log(['getChatFromConfig ', chats]);
 
-    Object.keys(chats).forEach(gid => {
+    Object.keys(chats).forEach((gid) => {
       const id = chats[gid].chat_id;
       const name = chats[gid].sheet_name;
       id2name[id] = name;
@@ -215,7 +215,7 @@ class TelegramBot extends AbstractAppleBot {
       uname,
       u.deepRetrieve(latlng, 'latitude'),
       u.deepRetrieve(latlng, 'longitude'),
-      this.isEditedMessage() ? 'edited' : ''
+      this.isEditedMessage() ? 'edited' : '',
     ];
     if (u.hasProperty(sheet, 'appendRow')) {
       sheet.appendRow(row);
@@ -232,7 +232,7 @@ class TelegramBot extends AbstractAppleBot {
       'username',
       'lat',
       'lng',
-      'edited'
+      'edited',
     ]);
     return ldata;
   }
@@ -274,7 +274,7 @@ class TelegramBot extends AbstractAppleBot {
     });
     return Object.keys(way)
       .sort()
-      .map(t => {
+      .map((t) => {
         return way[t];
       });
   }
@@ -352,7 +352,7 @@ class TelegramBot extends AbstractAppleBot {
     // system
     if (u.hasProperty(message, 'new_chat_members')) {
       const names = message.new_chat_members
-        .map(t => {
+        .map((t) => {
           return t.first_name;
         })
         .join(' ');
@@ -406,7 +406,7 @@ class TelegramBot extends AbstractAppleBot {
         reply_to_message_id,
         method: 'sendMessage',
         disable_web_page_preview: config.telegram.disable_web_page_preview,
-        parse_mode: config.telegram.parse_mode
+        parse_mode: config.telegram.parse_mode,
       });
     }
     return this.sendToAdmin(text);
@@ -436,7 +436,7 @@ class TelegramBot extends AbstractAppleBot {
     const webhook_info = cx.tg.sendToTelegram('getWebhookInfo', {});
 
     const for_admin_text = [chat_info, bot_info, webhook_info]
-      .map(json => {
+      .map((json) => {
         const data = JSON.parse(json);
         let buf = '';
         u.each(data.result, (k, v) => {
@@ -522,7 +522,7 @@ class TelegramBot extends AbstractAppleBot {
       u.deepRetrieve(mes, 'from.username'),
       this.getUserFullname(),
       body,
-      cx.requestContents.replace(regexp, ' ')
+      cx.requestContents.replace(regexp, ' '),
     ];
     const flag = u.isIgnorePattern(mtext, config.archiver.IgnorePattern);
     if (!flag) {
@@ -539,12 +539,12 @@ class TelegramBot extends AbstractAppleBot {
 
     // handle message type separately
     Promise.all(
-      this.valid_handler_type.map(async type => {
+      this.valid_handler_type.map(async (type) => {
         if (type !== 'any' && u.hasProperty(mes, type)) {
           cx.mgr.dispatchEvent(type);
         }
       })
-    ).catch(err => {
+    ).catch((err) => {
       throw new Error(err);
     });
 

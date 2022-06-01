@@ -1,4 +1,4 @@
-(function(exports) {
+(function (exports) {
   // =================================================================================
   // Start of plugin [security]
 
@@ -9,7 +9,7 @@
     const users = {
       groups: [],
       users: [],
-      ignore: []
+      ignore: [],
     };
     const u_sheet = cx.model.getSheet('users');
     let ignore = true;
@@ -19,7 +19,7 @@
     // ユーザー一覧を取得
     let u_values = u_sheet.getSheetValues(1, 1, u_sheet.getLastRow(), u_sheet.getLastColumn());
 
-    u_values.forEach(cols => {
+    u_values.forEach((cols) => {
       // keys of users: chat_id title type start_at
       users[utype][cols[0]] = { chat_id: cols[0], title: cols[1] };
     });
@@ -41,7 +41,7 @@
         cx.tgBot.getUserFullname(),
         'new_user',
         cx.tgBot.getMessageDateTime(),
-        username
+        username,
       ]);
     }
 
@@ -73,7 +73,7 @@
       isLoaded: false,
       type: 'special',
       security: security,
-      registerEvents: () => {}
+      registerEvents: () => {},
     };
   }
 
@@ -85,7 +85,7 @@
     }
   } catch (e) {
     cx = {
-      plugins: {}
+      plugins: {},
     };
   }
   const p = setup();

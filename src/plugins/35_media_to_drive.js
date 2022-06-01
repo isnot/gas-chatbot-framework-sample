@@ -1,4 +1,4 @@
-(function(exports) {
+(function (exports) {
   // =================================================================================
   // Start of plugin
 
@@ -46,7 +46,7 @@
       isAvailable: true,
       isEnabled: true,
       isLoaded: false,
-      registerEvents
+      registerEvents,
     };
   }
 
@@ -58,7 +58,7 @@
     }
   } catch (e) {
     cx = {
-      plugins: {}
+      plugins: {},
     };
   }
   const p = setup();

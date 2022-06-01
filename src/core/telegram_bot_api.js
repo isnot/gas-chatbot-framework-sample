@@ -28,7 +28,7 @@ class TelegramBotApi {
         text: message,
         method: method,
         disable_web_page_preview: config.telegram.disable_web_page_preview,
-        parse_mode: config.telegram.parse_mode
+        parse_mode: config.telegram.parse_mode,
       };
       if (data.text === '') {
         throw new Error('need params text');
@@ -43,7 +43,7 @@ class TelegramBotApi {
     const options = {
       method: 'post',
       contentType: 'application/json',
-      payload: JSON.stringify(data)
+      payload: JSON.stringify(data),
     };
     const response = UrlFetchApp.fetch(url, options);
     // Logger.log([options, response]);
@@ -57,7 +57,7 @@ class TelegramBotApi {
       text: cx.utils.replaceCharactorEntity4TgHtml(message),
       method: 'sendMessage',
       disable_web_page_preview: config.telegram.disable_web_page_preview,
-      parse_mode: config.telegram.parse_mode
+      parse_mode: config.telegram.parse_mode,
     });
   }
 
@@ -68,7 +68,7 @@ class TelegramBotApi {
       text: message,
       method: 'sendMessage',
       disable_web_page_preview: config.telegram.disable_web_page_preview,
-      parse_mode: config.telegram.parse_mode
+      parse_mode: config.telegram.parse_mode,
     });
   }
 
@@ -79,7 +79,7 @@ class TelegramBotApi {
       message_id: message_id,
       text: text,
       disable_web_page_preview: config.telegram.disable_web_page_preview,
-      parse_mode: config.telegram.parse_mode
+      parse_mode: config.telegram.parse_mode,
     };
     if (!text || text === '') {
       throw new Error('updateMessageHTML: need text');
@@ -125,7 +125,7 @@ class InlineKeyboardManager {
     if (!Array.isArray(arr)) {
       return this;
     }
-    arr.forEach(item => {
+    arr.forEach((item) => {
       if (typeof item === 'object' && u.hasProperty(item, 'text') && u.hasProperty(item, 'callback_data')) {
         valid_items.push(item);
       }
