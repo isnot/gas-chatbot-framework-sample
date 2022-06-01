@@ -1,6 +1,6 @@
 {
   "name": "my_bot_sample",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ChatBot sample",
   "main": "index.js",
   "scripts": {
@@ -26,15 +26,15 @@
   },
   "homepage": "https://github.com/isnot",
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "eslint": "^8.15.0",
+    "@babel/core": "^7.18.2",
+    "@babel/eslint-parser": "^7.18.2",
+    "eslint": "^8.16.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-googleappsscript": "^1.0.4",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jest": "^26.1.5",
+    "eslint-plugin-jest": "^26.4.6",
     "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.6.2",
-    "prettier-eslint": "^14.0.2"
+    "prettier": "^2.6.2"
   }
 }
