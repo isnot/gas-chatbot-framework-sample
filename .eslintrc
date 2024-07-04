@@ -1,6 +1,6 @@
 {
   "root": true,
-  "extends": ["eslint:recommended", "airbnb-base", "plugin:prettier/recommended"],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "plugins": ["prettier", "googleappsscript"],
   "parserOptions": {
     "parser": "@babel/eslint-parser",
@@ -13,7 +13,6 @@
     "no-console": ["error", { "allow": ["info", "warn", "error"] }],
     "prettier/prettier": "warn",
     "require-jsdoc": "off",
-    "import/prefer-default-export": "off",
     "arrow-body-style": 0,
     "max-len": 0,
     "class-methods-use-this": 0,
