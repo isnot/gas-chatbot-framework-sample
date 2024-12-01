@@ -24,15 +24,5 @@
   "bugs": {
     "url": "https://github.com/isnot"
   },
-  "homepage": "https://github.com/isnot",
-  "devDependencies": {
-    "@babel/core": "^7.26.0",
-    "@babel/eslint-parser": "^7.25.9",
-    "eslint": "^9.15.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-googleappsscript": "^1.0.5",
-    "eslint-plugin-jest": "^28.9.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "prettier": "^3.4.1"
-  }
+  "homepage": "https://github.com/isnot"
 }
